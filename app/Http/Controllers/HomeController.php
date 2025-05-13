@@ -119,6 +119,15 @@ class HomeController extends Controller
             ->get();
         return view('search-product', compact('product_timkiem', 'data_category'));
     }
+     //tim kiem khi nhap tu khoa
+    public function autocomplete(Request $request)
+    {
+    $query = $request->get('query');
+    $products = Product::where('product_name', 'LIKE', "%{$query}%")
+                        ->take(5)
+                        ->get(['id', 'product_name as name', 'product_image as image', 'product_price as price']);
+    return response()->json($products);
+    }
     public function checkout(Cart $cart)
     {
         $data_category = Categori::all();

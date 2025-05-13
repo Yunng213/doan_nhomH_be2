@@ -47,7 +47,8 @@ Route::get('/topsellers-product/{topselersproducts}',[HomeController::class,'top
 
 //Tim kiem san pham
 Route::get('/search-product/{searchproduct}',[HomeController::class,'searchproduct'])->name('timkiem.product');
-
+//goi y san pham khi nhap tu khoa
+Route::get('/autocomplete', [SearchController::class, 'autocomplete'])->name('autocomplete');
 
 //Gio Hang
 Route::post('/cart/{add}',[CartController::class,'add'])->name('cart.add')->middleware('auth.check');
@@ -111,3 +112,4 @@ require __DIR__.'/auth.php';
 Route::post('/admin_product',function(){
     return view('index');
 })->middleware('phanquyen');
+
