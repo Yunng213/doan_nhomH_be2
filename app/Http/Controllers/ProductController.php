@@ -114,4 +114,5 @@ class ProductController extends Controller
         $product->delete();
         return redirect()->route('products')->with('success','Xóa thành cônggg');
     }
+   
 }
