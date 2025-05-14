@@ -86,12 +86,14 @@
                                 <button class="dropbtn">Danh Mục</button>
                                 <div class="dropdown-content">
                                     @foreach($data_category as $data)
-                                    <a href="{{route('category',$data->id)}}" class="menu_categories">{{$data->name}}</a>
+                                   <a href="{{ route('category.product', $data->id) }}" class="menu_categories">{{ $data->name }}</a>
+
                                     @endforeach
                                 </div>
                             </div>
                         <li>
-                            <form action="{{ route('timkiem.product', 'searchproduct') }}" method="get">
+                            <form action="{{ route('search.product', 'searchproduct') }}" method="get">
+
                                 <input style="border-radius: 10px; margin-top: 10px; margin-left: 180px; width:300px;" name="key" type="text" placeholder="Search products...">
                                 <button style="border-radius: 10px; width:80px; height: 45px; margin-left: 10px;">Search</button>
                             </form>
@@ -161,7 +163,8 @@
                         <h2 class="footer-wid-title">Danh mục nổi bật</h2>
                         <ul>
                             @foreach($data_category as $data)
-                            <a style="margin-left: 100px;" href="{{route('category',$data->id)}}" class="menu_categories">{{$data->name}}</a>
+                            <a style="margin-left: 100px;" href="{{ route('category.product', $data->id) }}" class="menu_categories">{{ $data->name }}</a>
+
                             @endforeach
                         </ul>
                     </div>
