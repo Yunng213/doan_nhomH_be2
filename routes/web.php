@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Middleware\AdminMiddleware;
 use App\Models\DonDaDatSession;
 use App\Models\Product;
+use App\Http\Controllers\WishlistController;
 
 Paginator::useBootstrap();
 /*
@@ -111,3 +112,7 @@ require __DIR__.'/auth.php';
 Route::post('/admin_product',function(){
     return view('index');
 })->middleware('phanquyen');
+//them san pham yeu thich
+Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist.index');
+Route::post('/wishlist/add/{productId}', [WishlistController::class, 'add'])->name('wishlist.add');
+Route::delete('/wishlist/remove/{productId}', [WishlistController::class, 'remove'])->name('wishlist.remove');

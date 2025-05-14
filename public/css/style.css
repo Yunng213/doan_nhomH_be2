@@ -1,0 +1,12 @@
+.wishlist-btn {
+    background-color: #5a88ca;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.wishlist-btn:hover {
+    background-color: #4067a5;
+}

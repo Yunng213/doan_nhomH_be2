@@ -8,6 +8,23 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     use HasFactory;
-        
-    protected $fillable = ['product_name','product_type','product_quantity','product_price','product_detail','product_image','type_name','type_logo'];
+
+    protected $fillable = [
+        'product_name',
+        'product_type',
+        'product_quantity',
+        'product_price',
+        'product_detail',
+        'product_image',
+        'type_name',
+        'type_logo'
+    ];
+
+    /**
+     * Lấy danh sách các bản ghi wishlist liên quan đến sản phẩm này.
+     */
+   public function wishlists()
+{
+    return $this->hasMany(Wishlist::class, 'product_id', 'id');
+}
 }

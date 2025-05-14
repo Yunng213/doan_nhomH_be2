@@ -71,6 +71,7 @@
                             <div class="product-carousel-price">
                                 {{number_format( $data->product_price,0, ',', '.')}} vnđ
                             </div>
+                            <button class="wishlist-btn btn btn-default" data-product-id="{{ $data->id }}">❤</button>
                         </div>
                         @endforeach
                     </div>
@@ -102,6 +103,7 @@
                         <div class="product-wid-price">
                             {{number_format( $data->topsale_price,0, ',', '.')}} vnđ
                         </div>
+                        <button class="wishlist-btn btn btn-default" data-product-id="{{ $data->id }}">❤</button>
                     </div>
                     @endforeach
                 </div>
@@ -124,6 +126,7 @@
                         <div class="product-wid-price">
                             {{number_format( $data->product_price,0, ',', '.')}} vnđ
                         </div>
+                        <button class="wishlist-btn btn btn-default" data-product-id="{{ $data->id }}">❤</button>
                     </div>
                     @endforeach
                 </div>
@@ -146,6 +149,7 @@
                         <div class="product-wid-price">
                             {{number_format( $data->product_price,0, ',', '.')}} vnđ
                         </div>
+                        <button class="wishlist-btn btn btn-default" data-product-id="{{ $data->id }}">❤</button>
                     </div>
                     @endforeach
 
@@ -154,4 +158,26 @@
         </div>
     </div>
 </div> 
+<!-- Thêm JavaScript -->
+<script>
+    $(document).ready(function() {
+        $('.wishlist-btn').on('click', function(e) {
+            e.preventDefault();
+            var productId = $(this).data('product-id');
+            $.ajax({
+                url: '{{ route('wishlist.add', ['productId' => ':id']) }}'.replace(':id', productId),
+                type: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function(response) {
+                    alert(response.message);
+                },
+                error: function(xhr) {
+                    alert(xhr.responseJSON.message || 'Đã xảy ra lỗi!');
+                }
+            });
+        });
+    });
+</script>
 @endsection
