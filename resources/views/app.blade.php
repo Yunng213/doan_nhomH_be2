@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Shop Page- TechZone</title>
+    <title>Shop Page- Ustora</title>
 
     <!-- Google Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600' rel='stylesheet' type='text/css'>
@@ -109,9 +109,9 @@
                         <div style="margin-bottom: 20px;margin-top: -30px;">
                             <a href="./"><img src="img/logo.png"></a>
                         </div>
-                        <p>VQJ9+7JV, Hẻm 170, Linh Xuân, Thủ Đức, Hồ Chí Minh, Vietnam</p>
+                        <p>21/2A Phan Huy Ích, Phường 12, Gò Vấp, Thành phố Hồ Chí Minh, Việt Nam</p>
                         <p>0234 678 678</p>
-                        <p>dientutechzone@gmail.com</p>
+                        <p>didongustors@gmail.com</p>
                         <div class="footer-social">
                             <a href="#" target="_blank"><i class="fa fa-facebook"></i></a>
                             <a href="#" target="_blank"><i class="fa fa-twitter"></i></a>
