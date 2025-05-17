@@ -31,8 +31,6 @@ class HomeController extends Controller
 
     public function index($page = "index")
     {
-
-
         $data = self::getProductData();
         switch ($page) {
             case 'login':

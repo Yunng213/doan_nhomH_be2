@@ -144,9 +144,9 @@
                         <div style="margin-bottom: 20px;margin-top: -30px;">
                             <a href="./"><img src="img/logo.png"></a>
                         </div>
-                        <p> Thủ Đức, Thành phố Hồ Chí Minh, Việt Nam</p>
+                        <p> Điện tử TechZone, VQJ9+7JV, Hẻm 170, Linh Xuân, Thủ Đức, Hồ Chí Minh</p>
                         <p>0234 678 678</p>
-                        <p>TechZone@gmail.com</p>
+                        <p>dientutechzone@gmail.com</p>
                         <div class="footer-social">
                             <a href="#" target="_blank"><i class="fa fa-facebook"></i></a>
                             <a href="#" target="_blank"><i class="fa fa-twitter"></i></a>

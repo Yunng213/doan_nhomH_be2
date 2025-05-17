@@ -8,7 +8,7 @@
 
     <title>TechZone</title>
 
-    <title>Shop Page- Ustora</title>
+    <title>Shop Page - TechZone</title>
 
 
     <!-- Google Fonts -->
@@ -189,15 +189,7 @@
                         <div style="margin-bottom: 20px;margin-top: -30px;">
                             <a href="./"><img src="img/logo.png"></a>
                         </div>
-                        <p>21/2A Phan Huy Ích, Phường 12, Gò Vấp, Thành phố Hồ Chí Minh, Việt Nam</p>
-                        <p>0234 678 678</p>
-                        <p>didongustors@gmail.com</p>
-                        <div class="footer-social">
-                            <a href="#" target="_blank"><i class="fa fa-facebook"></i></a>
-                            <a href="#" target="_blank"><i class="fa fa-twitter"></i></a>
-                            <a href="#" target="_blank"><i class="fa fa-youtube"></i></a>
-                            <a href="#" target="_blank"><i class="fa fa-linkedin"></i></a>
-                        </div>
+                      
                     </div>
 
                 </div>
