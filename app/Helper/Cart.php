@@ -5,9 +5,12 @@ namespace App\Helper;
 class Cart
 {
     private $items = [];
+    private $total_quantity = 0;
+    private $total_price = 0;
 
     public function __construct()
     {
+
         $this->items = session('cart') ? session('cart') : [];
     }
 
@@ -37,7 +40,7 @@ class Cart
         }
         return $totalprice;
     }
-
+    
     public function getTotalQuantity()
     {
         $totalQuantity = 0;
@@ -46,14 +49,16 @@ class Cart
         }
         return $totalQuantity;
     }
-
     public function remove($productId)
     {
-        if (array_key_exists($productId, $this->items)) {
-            unset($this->items[$productId]);
-            session(['cart' => $this->items]);
-            return true;
+        $cart = session('cart', []); 
+
+        if (array_key_exists($productId, $cart)) {
+            unset($cart[$productId]);
+            session(['cart' => $cart]);
+
+            return redirect()->back()->with('message', 'Sản phẩm đã được xóa khỏi giỏ hàng');
         }
-        return false;
+        return redirect()->back()->with('error', 'Sản phẩm không tồn tại trong giỏ hàng');
     }
 }

@@ -60,10 +60,10 @@ class ProductController extends Controller
         // ]);
 
         $data = $request->all();
-$data['Promotion'] = $request->input('Promotion', ''); // hoặc mặc định là 0 nếu là kiểu số
-Product::create($data);
+    $data['Promotion'] = $data['Promotion'] ?? 0; // Thêm dòng này
+    Product::create($data);
         // return redirect('products.index')->with('success','Thêm sản phẩm thành côngg!!!');
-        return redirect()->route('products.index')->with('success','Update thành cônggg');
+        return redirect()->route('products')->with('success','Thêm sản phẩm thành côngg!!!');
     }
 
     /**
@@ -101,7 +101,7 @@ Product::create($data);
     {
         $product = Product::findOrFail($id);
         $product->update($request->all());
-        return redirect()->route('products.index')->with('success','Update thành cônggg');
+        return redirect()->route('products')->with('success','Update thành cônggg');
     }
 
     /**
@@ -114,7 +114,6 @@ Product::create($data);
     {
         $product = Product::findOrFail($id);
         $product->delete();
-        return redirect()->route('products.index')->with('success','Xóa thành cônggg');
-
+        return redirect()->route('products')->with('success','Xóa thành cônggg');
     }
 }

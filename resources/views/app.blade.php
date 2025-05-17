@@ -5,7 +5,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <title>TechZone</title>
+
+    <title>Shop Page- Ustora</title>
+
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
@@ -170,6 +174,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 col-md-4">
+
                     <img src="img/logo.png" style="height: 60px;">
                     <p>Điện tử TechZone, VQJ9+7JV, Hẻm 170, Linh Xuân, Thủ Đức, Hồ Chí Minh</p>
                     <p>0234 678 678</p>
@@ -179,6 +184,32 @@
                         <a href="#"><i class="fa fa-twitter"></i></a>
                         <a href="#"><i class="fa fa-youtube"></i></a>
                         <a href="#"><i class="fa fa-linkedin"></i></a>
+
+                    <div class="footer-menu">
+                        <div style="margin-bottom: 20px;margin-top: -30px;">
+                            <a href="./"><img src="img/logo.png"></a>
+                        </div>
+                        <p>21/2A Phan Huy Ích, Phường 12, Gò Vấp, Thành phố Hồ Chí Minh, Việt Nam</p>
+                        <p>0234 678 678</p>
+                        <p>didongustors@gmail.com</p>
+                        <div class="footer-social">
+                            <a href="#" target="_blank"><i class="fa fa-facebook"></i></a>
+                            <a href="#" target="_blank"><i class="fa fa-twitter"></i></a>
+                            <a href="#" target="_blank"><i class="fa fa-youtube"></i></a>
+                            <a href="#" target="_blank"><i class="fa fa-linkedin"></i></a>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-lg-3 col-md-4">
+                    <div class="footer-menu">
+                        <h2 class="footer-wid-title">Danh mục nổi bật</h2>
+                        <ul>
+                            @foreach($data_category as $data)
+                            <a style="margin-left: 100px;" href="{{route('category',$data->id)}}" class="menu_categories">{{$data->name}}</a>
+                            @endforeach
+                        </ul>
+
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-4">
