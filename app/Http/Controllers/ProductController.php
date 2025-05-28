@@ -59,9 +59,7 @@ class ProductController extends Controller
         //     'type_logo'=>$valid['type_logo']
         // ]);
 
-        $data = $request->all();
-    $data['Promotion'] = $data['Promotion'] ?? 0; // Thêm dòng này
-    Product::create($data);
+        Product::create($request->all());
         // return redirect('products.index')->with('success','Thêm sản phẩm thành côngg!!!');
         return redirect()->route('products')->with('success','Thêm sản phẩm thành côngg!!!');
     }

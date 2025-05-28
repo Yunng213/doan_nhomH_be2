@@ -3,17 +3,30 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Schema; // 👈 Dòng này rất quan trọng
+use App\Models\Product;
+use App\Models\Category;
+use App\Models\Latestproduct;
 
 class AppServiceProvider extends ServiceProvider
 {
+    /**
+     * Register any application services.
+     *
+     * @return void
+     */
     public function register()
     {
         //
     }
 
+    /**
+     * Bootstrap any application services.
+     *
+     * @return void
+     */
     public function boot()
     {
-        Schema::defaultStringLength(191);
+        Schema::defaultStringLength(191); // 👈 Dòng này giúp tránh lỗi index quá dài
     }
 }

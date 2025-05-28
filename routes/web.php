@@ -47,7 +47,6 @@ Route::get('/topsellers-product/{topselersproducts}',[HomeController::class,'top
 
 //Tim kiem san pham
 Route::get('/search-product/{searchproduct}',[HomeController::class,'searchproduct'])->name('timkiem.product');
-Route::get('/searchproduct', [ProductController::class, 'search'])->name('search.product');
 
 
 //Gio Hang

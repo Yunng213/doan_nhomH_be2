@@ -14,8 +14,7 @@
     <title>Shop Page- Ustora</title>
 
     <!-- Google Fonts -->
-    <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600' rel='stylesheet'
-        type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Raleway:400,100' rel='stylesheet' type='text/css'>
 
@@ -44,20 +43,19 @@
     <div class="header-area">
         <div class="container">
             @if (Route::has('login'))
-                <div class="login">
-                    @auth
-                        <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">
-                            <div>{{ Auth::user()->name }}</div>
-                        </a>
-                    @else
-                        <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
+            <div class="login">
+                @auth
+                <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">
+                    <div>{{ Auth::user()->name }}</div>
+                </a>
+                @else
+                <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
 
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}"
-                                class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
-                        @endif
-                    @endauth
-                </div>
+                @if (Route::has('register'))
+                <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
+                @endif
+                @endauth
+            </div>
             @endif
         </div>
     </div> <!-- End header area -->
@@ -87,7 +85,7 @@
                             <button class="dropbtn">Danh Mục</button>
                             <div class="dropdown-content">
                                 @foreach($data_category as $data)
-                                    <a href="{{route('category', $data->id)}}" class="menu_categories">{{$data->name}}</a>
+                                <a href="{{route('category',$data->id)}}" class="menu_categories">{{$data->name}}</a>
                                 @endforeach
                             </div>
                         </div>
@@ -95,16 +93,13 @@
                     <!--Thêm Nav -->
                     <li>
                         <form role="timkiem" action="{{ route('timkiem.product', 'searchproduct') }}" method="get">
-                            <input style="border-radius: 10px; margin-top: 10px; margin-left: 180px; width:300px;"
-                                name="key" type="text" placeholder="Search products...">
-                            <button
-                                style="border-radius: 10px; width:80px; height: 45px; margin-left: 10px;">Search</button>
+                            <input style="border-radius: 10px; margin-top: 10px; margin-left: 180px; width:300px;" name="key" type="text" placeholder="Search products...">
+                            <button style="border-radius: 10px; width:80px; height: 45px; margin-left: 10px;">Search</button>
                         </form>
                     </li>
                     </li>
                     <li style="margin-left: 190px;">
-                        <a href="{{ route('cart.product', 'listproduct') }}"><i class="fa fa-shopping-cart"></i> <span
-                                class="product-count"></span></a>
+                        <a href="{{ route('cart.product','listproduct') }}"><i class="fa fa-shopping-cart"></i> <span class="product-count"></span></a>
                     </li>
                 </ul>
             </div>
@@ -125,8 +120,8 @@
                             <a href="./"><img src="img/logo.png"></a>
                         </div>
                         <p>Điện tử TechZone, VQJ9+7JV, Hẻm 170, Linh Xuân, Thủ Đức, Hồ Chí Minh</p>
-                        <p>0234 678 678</p>
-                        <p>dientutechzone@gmail.com</p>
+                    <p>0234 678 678</p>
+                    <p>dientutechzone@gmail.com</p>
                         <div class="footer-social">
                             <a href="#" target="_blank"><i class="fa fa-facebook"></i></a>
                             <a href="#" target="_blank"><i class="fa fa-twitter"></i></a>
@@ -141,8 +136,7 @@
                         <h2 class="footer-wid-title">Danh mục nổi bật</h2>
                         <ul>
                             @foreach($data_category as $data)
-                                <a style="margin-left: 100px;" href="{{route('category', $data->id)}}"
-                                    class="menu_categories">{{$data->name}}</a>
+                            <a style="margin-left: 100px;" href="{{route('category',$data->id)}}" class="menu_categories">{{$data->name}}</a>
                             @endforeach
                         </ul>
                     </div>
@@ -162,8 +156,7 @@
                         <h2 class="footer-wid-title" style="text-align: center;">Map</h2>
                     </div>
                     <div class="footer-map">
-                        
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d291.213893467201!2d106.76902755472202!3d10.880644586216379!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3174d90022426c6d%3A0x438eaf5d0afb4c6!2zxJBp4buHbiB04butIFRlY2hab25l!5e0!3m2!1sen!2s!4v1744773852067!5m2!1sen!2s" width="350" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                       <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d291.213893467201!2d106.76902755472202!3d10.880644586216379!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3174d90022426c6d%3A0x438eaf5d0afb4c6!2zxJBp4buHbiB04butIFRlY2hab25l!5e0!3m2!1sen!2s!4v1744773852067!5m2!1sen!2s" width="350" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                 </div>
             </div>
@@ -174,7 +167,7 @@
             <div class="row">
                 <div class="col-md-8">
                     <div class="copyright">
-                        <p>&copy; 2024 All Rights Reserved.</p>
+                        <p>&copy; 2025 All Rights Reserved.</p>
                     </div>
                 </div>
 
