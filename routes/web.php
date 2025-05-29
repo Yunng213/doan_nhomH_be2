@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Middleware\AdminMiddleware;
 use App\Models\DonDaDatSession;
 use App\Models\Product;
+use App\Http\Controllers\UserController;
 
 Paginator::useBootstrap();
 /*
@@ -111,3 +112,8 @@ require __DIR__.'/auth.php';
 Route::post('/admin_product',function(){
     return view('index');
 })->middleware('phanquyen');
+
+Route::resource('users', UserController::class);
+//curd user
+Route::get('{page}', [HomeController::class, 'index']);
+

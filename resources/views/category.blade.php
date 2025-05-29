@@ -166,7 +166,7 @@
             <div class="row">
                 <div class="col-md-8">
                     <div class="copyright">
-                        <p>&copy; 2024 All Rights Reserved.</p>
+                        <p>&copy; 2025 All Rights Reserved.</p>
                     </div>
                 </div>
 
