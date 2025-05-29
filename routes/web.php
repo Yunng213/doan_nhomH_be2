@@ -32,26 +32,27 @@ Paginator::useBootstrap();
 |
 */
 //Trang chu
-Route::get('/{page?}',[HomeController::class,'index']);
+Route::get('/{page?}', [HomeController::class, 'index']);
 
 //Chi Tiet San Pham
-Route::get('/single-product/{product}',[HomeController::class,'product'])->name('single.product');
+//Route::get('/single-product/{product}',[HomeController::class,'product'])->name('single.product');
+Route::get('/single-product/{id}', [ProductController::class, 'show'])->name('single.product');
 
 //San pham theo danh muc
-Route::get('/category-product/{categoryproducts}',[HomeController::class,'categoryproducts'])->name('category');
-Route::get('/product-category/{productcategory}',[HomeController::class,'productcategory'])->name('product.category');
-Route::get('/logo-product/{logoproduct}',[HomeController::class,'logoproduct'])->name('logo.product');
+Route::get('/category-product/{categoryproducts}', [HomeController::class, 'categoryproducts'])->name('category');
+Route::get('/product-category/{productcategory}', [HomeController::class, 'productcategory'])->name('product.category');
+Route::get('/logo-product/{logoproduct}', [HomeController::class, 'logoproduct'])->name('logo.product');
 
 //Top khuyen mai
-Route::get('/topsellers-product/{topselersproducts}',[HomeController::class,'topselersproducts'])->name('topsellers.product');
+Route::get('/topsellers-product/{topselersproducts}', [HomeController::class, 'topselersproducts'])->name('topsellers.product');
 
 //Tim kiem san pham
-Route::get('/search-product/{searchproduct}',[HomeController::class,'searchproduct'])->name('timkiem.product');
+Route::get('/search-product/{searchproduct}', [HomeController::class, 'searchproduct'])->name('timkiem.product');
 
 
 //Gio Hang
-Route::post('/cart/{add}',[CartController::class,'add'])->name('cart.add')->middleware('auth.check');
-Route::get('/cart/{listproduct}',[CartController::class,'listproduct'])->name('cart.product');
+Route::post('/cart/{add}', [CartController::class, 'add'])->name('cart.add')->middleware('auth.check');
+Route::get('/cart/{listproduct}', [CartController::class, 'listproduct'])->name('cart.product');
 Route::get('/cart', [CartController::class, 'showCart'])->name('cart.show');
 Route::get('/cart/remove/{productId}', [CartController::class, 'remove'])->name('cart.remove');
 
@@ -62,8 +63,8 @@ Route::post('/vnpay_payment', [CheckoutControlle::class, 'vnpay_payment']);
 
 
 //Loc san pham
-Route::get('/shop-product',[HomeController::class,'locsanpham'])->name('products.arrange');
-Route::get('/search-product/{locsanphamtimkiem}',[HomeController::class,'locsanphamtimkiem'])->name('search.arrange');
+Route::get('/shop-product', [HomeController::class, 'locsanpham'])->name('products.arrange');
+Route::get('/search-product/{locsanphamtimkiem}', [HomeController::class, 'locsanphamtimkiem'])->name('search.arrange');
 
 
 //Hien thi don da dat
@@ -71,20 +72,21 @@ Route::post('/store-product-info', [ProductController::class, 'storeProductInfo'
 Route::get('/dashboard', [ProductController::class, 'showProducts']);
 
 //So sanh san pham
-Route::post('/sosanh/{sosanh}',[SoSanhControlle::class,'sosanh'])->name('sosanh.add');
-Route::get('/sosanh/{listproduct}',[SoSanhControlle::class,'listproduct'])->name('sosanh.product');
+Route::post('/sosanh/{sosanh}', [SoSanhControlle::class, 'sosanh'])->name('sosanh.add');
+Route::get('/sosanh/{listproduct}', [SoSanhControlle::class, 'listproduct'])->name('sosanh.product');
 Route::get('/sosanh/removesosanh/{productId}', [SoSanhControlle::class, 'removesosanh'])->name('sosanh.remove');
 
 Route::middleware('auth')->group(function () {
     Route::get('dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
-    Route::get('/profile_admin',[App\Http\Controllers\AuthController::class,'profile'])->name('profile');
-    Route::get('/profile_admin',[App\Http\Controllers\AuthController::class,'update'])->name('profile_update');
+    Route::get('/profile_admin', [App\Http\Controllers\AuthController::class, 'profile'])->name('profile');
+    Route::get('/profile_admin', [App\Http\Controllers\AuthController::class, 'update'])->name('profile_update');
+    Route::post('/profile_admin', [ProfileController::class, 'update'])->name('profile_admin');
 
 
 
-//CRUD ADMIN
+    //CRUD ADMIN
     Route::controller(ProductController::class)->prefix('products')->group(function () {
         Route::get('', 'index')->name('products');
         Route::get('create', 'create')->name('products.create');
@@ -92,7 +94,8 @@ Route::middleware('auth')->group(function () {
         Route::get('show/{id}', 'show')->name('products.show');
         Route::get('edit/{id}', 'edit')->name('products.edit');
         Route::put('edit/{id}', 'update')->name('products.update');
-        Route::delete('destroy/{id}', 'destroy')->name('products.destroy');
+
+        Route::delete('/products/{id}', [ProductController::class, 'destroy'])->name('products.destroy');
     });
 
 });
@@ -105,9 +108,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 //Phan quyen
-Route::post('/admin_product',function(){
+Route::post('/admin_product', function () {
     return view('index');
 })->middleware('phanquyen');

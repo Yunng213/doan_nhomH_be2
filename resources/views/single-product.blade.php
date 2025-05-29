@@ -33,7 +33,7 @@
 </div>
 
 
-<div class="single-product-area">
+<div class="single-product-area ">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -106,7 +106,8 @@
             </div>
         </div>
     </div>
-    <div class="row">
+   <div class="container ">
+   <div class="row">
         <div role="tabpanel" class="col-sm-8" id="home">
             <h2>Đặc điểm nổi bật</h2>
             <p> {{$product->product_detail}}</p>
@@ -129,6 +130,7 @@
             </div>
         </div>
     </div>
+   </div>
 </div>
 
 </div>

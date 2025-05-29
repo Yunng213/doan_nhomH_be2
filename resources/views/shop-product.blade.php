@@ -9,12 +9,13 @@
     <div class="row">
       <div class="col-md-12">
         <div class="product-bit-title text-center">
-          <h2>Sản Phẩm</h2>
+          <h2 class="active">Sản Phẩm</h2>
         </div>
       </div>
     </div>
   </div>
 </div>
+<div class="container">
 <div class="row">
     <div class="col-md-4">
         <label for="">Sắp Xếp Theo</label>
@@ -27,6 +28,7 @@
             </select>
         </form>
     </div>
+</div>
 </div>
 <div class="single-product-area">
   <div class="zigzag-bottom"></div>

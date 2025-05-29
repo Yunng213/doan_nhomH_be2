@@ -22727,7 +22727,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 /* provided dependency */ var Buffer = __webpack_require__(/*! buffer */ "./node_modules/buffer/index.js")["Buffer"];
-// Axios v1.6.8 Copyright (c) 2024 Matt Zabriskie and contributors
+// Axios v1.6.8 Copyright (c) 2025 Matt Zabriskie and contributors
 
 
 function bind(fn, thisArg) {

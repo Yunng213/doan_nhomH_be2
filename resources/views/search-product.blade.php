@@ -1,10 +1,14 @@
 @extends('category-timkiem')
 @section('content')
+
+<div class="container">
 <div class="product-breadcroumb">
     <a href="index"></i>Home</a>
 </div>
 <h2 style="text-align: center;">Kết quả tìm kiếm</h2>
-<h3>Tìm thấy {{count($product_timkiem)}} sản phẩm</h3>
+<h3 style="text-align: center">Tìm thấy {{count($product_timkiem)}} sản phẩm</h3>
+</div>
+<div class="container">
 <div class="row">
     <div class="col-md-4">
         <label for="">Sắp Xếp Theo</label>
@@ -17,6 +21,7 @@
             </select>
         </form>
     </div>
+</div>
 </div>
 <div class="single-product-area">
     <div class="container">

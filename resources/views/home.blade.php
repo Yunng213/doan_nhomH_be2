@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <!--
-	ustora by freshdesignweb.com
+	techzone by freshdesignweb.com
 	Twitter: https://twitter.com/freshdesignweb
-	URL: https://www.freshdesignweb.com/ustora/
+	URL: https://www.freshdesignweb.com/techzone/
 -->
 <html lang="en">
 
@@ -202,7 +202,7 @@
             <div class="row">
                 <div class="col-md-8">
                     <div class="copyright">
-                        <p>&copy; 2024 All Rights Reserved.</p>
+                        <p>&copy; 2025 All Rights Reserved.</p>
                     </div>
                 </div>
 

@@ -646,7 +646,7 @@ class ProductSeeder extends Seeder
                 'product_type' => '1',
                 'product_quantity' => 10,
                 'product_price' => 28140000,
-                'product_detail' => 'Samsung S24 Ultra là dòng điện thoại cao cấp của Samsung, sở hữu camera độ phân giải 200MP ấn tượng, chip Snapdragon 8 Gen 3 mạnh mẽ, bộ nhớ RAM 8GB mang lại hiệu suất xử lý vượt trội cùng khung viền vuông vức sang trọng. Sản phẩm được ra mắt từ đầu năm 2024.',
+                'product_detail' => 'Samsung S24 Ultra là dòng điện thoại cao cấp của Samsung, sở hữu camera độ phân giải 200MP ấn tượng, chip Snapdragon 8 Gen 3 mạnh mẽ, bộ nhớ RAM 8GB mang lại hiệu suất xử lý vượt trội cùng khung viền vuông vức sang trọng. Sản phẩm được ra mắt từ đầu năm 2025.',
                 'product_image' => 'samsungs24ultra.png',
                 'type_name' => '4',
                 'type_logo' => '4',

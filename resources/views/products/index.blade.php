@@ -8,11 +8,21 @@
         <a href="{{ route('products.create') }}" class="btn btn-primary">Add Product</a>
     </div>
     <hr />
+
+    {{-- Hiển thị thông báo thành công --}}
     @if(Session::has('success'))
         <div class="alert alert-success" role="alert">
             {{ Session::get('success') }}
         </div>
     @endif
+
+    {{-- Hiển thị thông báo lỗi --}}
+    @if(Session::has('error'))
+        <div class="alert alert-danger" role="alert">
+            {{ Session::get('error') }}
+        </div>
+    @endif
+
     <table class="table table-hover">
         <thead class="table-primary">
             <tr>
@@ -25,12 +35,12 @@
                 <th></th>
             </tr>
         </thead>
-        <tbody>+
+        <tbody>
             @if($product->count() > 0)
                 @foreach($product as $rs)
                     <tr>
                         <td class="align-middle">{{ $loop->iteration }}</td>
-                        <td class="align-middle"  width="200px">{{ $rs->product_name }}</td>
+                        <td class="align-middle" width="200px">{{ $rs->product_name }}</td>
                         <td class="align-middle">{{ $rs->product_quantity }}</td>
                         <td class="align-middle" width="150px">{{ $rs->product_price }}</td>
                         <td class="align-middle">{{ $rs->product_detail }}</td>
@@ -50,7 +60,7 @@
                 @endforeach
             @else
                 <tr>
-                    <td class="text-center" colspan="5">Product not found</td>
+                    <td class="text-center" colspan="7">Product not found</td>
                 </tr>
             @endif
         </tbody>

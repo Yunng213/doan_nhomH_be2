@@ -36,28 +36,28 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        // $valid  = $request->validate([
-        //     'product_name' => 'required|string|max:255',
-        //     'product_type' => 'required|string|max:255',
-        //     'product_quantity' => 'required|int',
-        //     'product_price' => 'required|string|max:255',
-        //     'product_detail' =>  'required|string|max:1000',
-        //     'product_image' => 'required|string|max:255',
-        //     'type_name'=>'required|string|max:255',
-        //     'type_logo'=>'required|string|max:255'
-        // ]);
-      
-   
-        //  Product::create([
-        //     'product_name' => $valid['product_name'],
-        //     'product_type' => $valid['product_type'],
-        //     'product_quantity' => $valid['product_quantity'],
-        //     'product_price' => $valid['product_price'],
-        //     'product_detail' => $valid['product_detail'],
-        //     'product_image' => $valid['product_image'],
-        //     'type_name'=>$valid['type_name'],
-        //     'type_logo'=>$valid['type_logo']
-        // ]);
+        $request->validate([
+            'product_name' => 'required|string|max:255|regex:/^[\pL\s\-]+$/u|not_regex:/^\s*$/',
+            'product_quantity' => 'required|integer|min:1|max:10000',
+            'product_price' => 'required|numeric|min:1000000|max:90000000',
+            'product_detail' => 'required|string|max:1200|not_regex:/^\s*$/',
+            'product_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ], [
+            'product_name.required' => 'Tên sản phẩm là bắt buộc.',
+            'product_name.regex' => 'Tên sản phẩm chỉ được chứa chữ cái, khoảng trắng và dấu gạch ngang.',
+            'product_name.not_regex' => 'Tên sản phẩm không được chỉ chứa khoảng trắng.',
+            'product_name.max' => 'Tên sản phẩm không được vượt quá 255 ký tự.',
+            'product_quantity.required' => 'Số lượng là bắt buộc.',
+            'product_quantity.integer' => 'Số lượng phải là số nguyên.',
+            'product_price.required' => 'Giá sản phẩm là bắt buộc.',
+            'product_price.numeric' => 'Giá sản phẩm phải là số.',
+            'product_detail.required' => 'Chi tiết sản phẩm là bắt buộc.',
+            'product_detail.not_regex' => 'Chi tiết sản phẩm không được chỉ chứa khoảng trắng.',
+            'product_detail.max' => 'Chi tiết sản phẩm không được vượt quá 1200 ký tự.',
+            'product_image.image' => 'Hình ảnh phải là file ảnh.',
+            'product_image.mimes' => 'Hình ảnh phải có định dạng jpeg, png, jpg, svg hoặc gif.',
+            'product_image.max' => 'Hình ảnh không được vượt quá 2MB.',
+        ]);
 
         Product::create($request->all());
         // return redirect('products.index')->with('success','Thêm sản phẩm thành côngg!!!');
@@ -72,8 +72,16 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        $product = Product::findOrFail($id);
-        return view('products.show',compact('product'));
+         // Tìm sản phẩm theo ID
+    $product = Product::find($id);
+
+    
+    if (!$product) {
+        return view('errors.product-not-found');
+    }
+
+    // Trả về view với dữ liệu sản phẩm
+    return view('products.show', compact('product'));
     }
 
     /**
@@ -97,9 +105,44 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $product = Product::findOrFail($id);
-        $product->update($request->all());
-        return redirect()->route('products')->with('success','Update thành cônggg');
+        $request->validate([
+            'product_name' => 'required|string|max:255|regex:/^[\pL\pN\s\-]+$/u|not_regex:/^\s*$/',
+            'product_quantity' => 'required|integer|min:1|max:10000',
+            'product_price' => 'required|numeric|min:1000000|max:90000000',
+            'product_detail' => 'required|string|max:1200|not_regex:/^\s*$/',
+            'product_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ], [
+            'product_name.required' => 'Tên sản phẩm là bắt buộc.',
+            'product_name.regex' => 'Tên sản phẩm chỉ được chứa chữ cái, khoảng trắng.',
+            'product_name.not_regex' => 'Tên sản phẩm không được chỉ chứa khoảng trắng.',
+            'product_name.max' => 'Tên sản phẩm không được vượt quá 255 ký tự.',
+            'product_quantity.required' => 'Số lượng là bắt buộc.',
+            'product_quantity.integer' => 'Số lượng phải là số nguyên.',
+            'product_price.required' => 'Giá sản phẩm là bắt buộc.',
+            'product_price.numeric' => 'Giá sản phẩm phải là số.',
+            'product_detail.required' => 'Chi tiết sản phẩm là bắt buộc.',
+            'product_detail.not_regex' => 'Chi tiết sản phẩm không được chỉ chứa khoảng trắng.',
+            'product_detail.max' => 'Chi tiết sản phẩm không được vượt quá 1200 ký tự.',
+            'product_image.image' => 'Hình ảnh phải là file ảnh.',
+            'product_image.mimes' => 'Hình ảnh phải có định dạng jpeg, png, jpg, hoặc gif.',
+            'product_image.max' => 'Hình ảnh không được vượt quá 2MB.',
+        ]);
+        $product = Product::find($id);
+
+  
+    if (!$product) {
+        return redirect()->route('products')->with('error', 'Sản phẩm không tồn tại.');
+    }
+
+
+    if ($product->updated_at != $request->input('updated_at')) {
+        return redirect()->route('products.edit', $id)->with('error', 'Dữ liệu đã thay đổi. Vui lòng tải lại trang trước khi cập nhật.');
+    }
+
+
+    $product->update($request->all());
+
+    return redirect()->route('products')->with('success', 'Cập nhật sản phẩm thành công.');
     }
 
     /**
@@ -110,8 +153,18 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        $product = Product::findOrFail($id);
-        $product->delete();
-        return redirect()->route('products')->with('success','Xóa thành cônggg');
+         // Kiểm tra xem sản phẩm có tồn tại không
+    $product = Product::find($id);
+
+    if (!$product) {
+        // Nếu sản phẩm không tồn tại, trả về thông báo lỗi
+        return redirect()->route('products')->with('error', 'Sản phẩm không tồn tại hoặc đã bị xóa.');
+    }
+
+    // Nếu sản phẩm tồn tại, thực hiện xóa
+    $product->delete();
+
+    // Trả về thông báo thành công
+    return redirect()->route('products')->with('success', 'Xóa sản phẩm thành công.');
     }
 }

@@ -27,7 +27,7 @@ h5,
 h6 {
     margin: 0 0 15px;
 }
-body { font-family:Arial, Helvetica, sans-serif; }
+body { font-family:'Outfit', Helvetica, sans-serif; }
 
 
 
@@ -75,7 +75,7 @@ body { font-family:Arial, Helvetica, sans-serif; }
 }
 
 .mainmenu-area {background: none repeat scroll 0 0 #fbfbfb;
-font-family: "Roboto Condensed",sans-serif;
+font-family: "Roboto",sans-serif;
 text-transform: uppercase;
 width: 100%;
 z-index: 999;}
@@ -147,9 +147,15 @@ z-index: 999;}
 
 .mainmenu-area ul.navbar-nav li a {
     color: #6e6a6a;
-    font-size: 14px;
+    font-size: 13px;
     padding: 20px;
+    flex-wrap: nowrap;
     
+}
+@media (max-width: 992px) {
+    .mainmenu-area .row {
+        flex-wrap: wrap;
+    }
 }
 
 .mainmenu-area ul.navbar-nav li:hover a, .mainmenu-area ul.navbar-nav li.active a {background: #7daff5; color:#FFF;}
@@ -371,7 +377,7 @@ z-index: 999;}
 .promo3 { background:#fa8072;}
 .promo4 { background:#4abebd;}
 .section-title {
-  font-family: "Raleway",sans-serif;
+  font-family: "Outfit",sans-serif;
   font-size: 50px;
   font-weight: 100;
   margin-bottom: 50px;
@@ -497,7 +503,7 @@ z-index: 999;}
 .maincontent-area {padding-bottom: 50px; padding-top:20px;}
 
 .product-wid-title {
-  font-family: raleway;
+  font-family: Outfit;
   font-size: 30px;
   font-weight: 100;
   margin-bottom: 40px;
@@ -568,7 +574,7 @@ padding: 35px 0 70px;}
   color: #5a88ca;
 }
 .footer-wid-title {
-  font-family: raleway;
+  font-family: Outfit;
   font-size: 30px;
   font-weight: 100;color: #fff
 }
@@ -695,7 +701,7 @@ width: 10px;
 .product-big-title-area {background: url(img/crossword.png) repeat scroll 0 0 #5a88ca}
 
 .product-bit-title h2 {
-  font-family: raleway;
+  font-family: Outfit;
   font-size: 50px;
   font-weight: 200;
   margin: 0;
@@ -1163,7 +1169,7 @@ div.cart-collaterals ul.products li.product:hover .add_to_cart_button li.active 
     border: none;
     cursor: pointer;
     background: none repeat scroll 0 0 #fbfbfb;
-    font-family: "Roboto Condensed",sans-serif;
+    font-family: "Outfit",sans-serif;
     text-transform: uppercase;
     width: 100%;
     z-index: 999;
