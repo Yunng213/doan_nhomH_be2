@@ -17,6 +17,17 @@ class ProductSeeder extends Seeder
     {
         DB::table('products')->insert([
             [
+                'product_name' => 'Macbook Air M3',
+                'product_type' => '2',
+                'product_quantity' => 30,
+                'product_price' => 32000000,
+                'product_detail' => 'Apple Macbook Air M3 2022 16GB 256GB thiết kế siêu mỏng 1.13cm, trang bị chip M2 8 nhân GPU, 16 nhân Neural Engine, RAM khủng 16GB, SSD 256GB, màn hình IPS Liquid Retina Display cùng hệ thống 4 loa cho trải nghiệm đỉnh cao.',
+                'product_image' => 'macbookair15.png',
+                'type_name' => '1',
+                'type_logo' => '1',
+                'Promotion' => 'Giảm giá cho sinh viên 5% cho tất cả sản phẩm laptop và máy tính bảng'
+            ],
+            [
                 'product_name' => 'Sony Xperia 5 IV',
                 'product_type' => '1',
                 'product_quantity' => 20,
@@ -183,7 +194,7 @@ class ProductSeeder extends Seeder
                 'type_logo' => '1',
                 'Promotion' => 'Giảm giá cho sinh viên 5% cho tất cả sản phẩm laptop và máy tính bảng'
             ],
-
+            
             [
                 'product_name' => 'iMac M3',
                 'product_type' => '2',

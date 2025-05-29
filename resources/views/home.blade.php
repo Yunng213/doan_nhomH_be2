@@ -43,20 +43,20 @@
     <div class="header-area">
         <div class="container">
             @if (Route::has('login'))
-                <div class="login">
-                    @auth
-                        <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">
-                            <div>{{ Auth::user()->name }}</div>
-                        </a>
-                    @else
-                        <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
+            <div class="login">
+                @auth
+                <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">
+                    <div>{{ Auth::user()->name }}</div>
+                </a>
+                @else
+                <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
 
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}"
-                                class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
-                        @endif
-                    @endauth
-                </div>
+                @if (Route::has('register'))
+                <a href="{{ route('register') }}"
+                    class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
+                @endif
+                @endauth
+            </div>
             @endif
         </div>
     </div>
@@ -88,8 +88,8 @@
                                 <button class="dropbtn">Danh Mục</button>
                                 <div class="dropdown-content">
                                     @foreach($data_category as $data)
-                                        <a href="{{route('category', $data->id)}}"
-                                            class="menu_categories">{{$data->name}}</a>
+                                    <a href="{{route('category', $data->id)}}"
+                                        class="menu_categories">{{$data->name}}</a>
                                     @endforeach
                                 </div>
                             </div>
@@ -117,19 +117,28 @@
         <!-- Slider -->
         <div class="block-slider block-slider4">
             <ul class="" id="bxslider-home4">
-                <li>
-                    <img src="img/samsunggalaxyslidings24.png" alt="Slide">
-                </li>
-                <li>
+                <a href="{{ route('single.product', 12) }}">
+                    <li>
+                        <img src="img/samsunggalaxyslidings24.png" alt="Slide">
+                    </li>
+                </a>
+                <a href="{{ route('single.product', 8) }}">
+                    <li>
                     <img src="img/iphone_15.png" alt="Slide">
                 </li>
-                <li>
+                </a>
+                 <a href="{{ route('single.product', 1) }}">
+                    <li>
                     <img src="img/Macair13.png" alt="Slide">
                 </li>
-                <li>
+                </a>
+                </a>
+                 <a href="{{ route('single.product', 9) }}">
+                    <li>
                     <img src="img/xiaomi_14.png" alt="Slide">
                 </li>
-
+                </a>
+                
 
             </ul>
         </div>
@@ -167,8 +176,8 @@
                         <h2 class="footer-wid-title">Danh mục nổi bật</h2>
                         <ul>
                             @foreach($data_category as $data)
-                                <a style="margin-left: 100px;" href="{{route('category', $data->id)}}"
-                                    class="menu_categories">{{$data->name}}</a>
+                            <a style="margin-left: 100px;" href="{{route('category', $data->id)}}"
+                                class="menu_categories">{{$data->name}}</a>
                             @endforeach
                         </ul>
                     </div>
