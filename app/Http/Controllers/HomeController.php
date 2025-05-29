@@ -54,7 +54,9 @@ class HomeController extends Controller
                 return $this->showProfile();
             case 'admin_product':
                 return view('admin_product.index', $data);
-
+             case 'users':
+            $users = \App\Models\User::all();
+            return view('users.index', compact('users')); // 👈 thêm dòng này
             default:
 
                 break;

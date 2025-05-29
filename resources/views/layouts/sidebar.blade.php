@@ -34,6 +34,13 @@
       <span>Profile</span></a>
   </li>
   
+  <li class="nav-item">
+    <a class="nav-link" href="{{ url('/users') }}">
+        <i class="fas fa-users"></i>
+        <span>Quản lý tài khoản</span>
+    </a>
+</li>
+
   <!-- Divider -->
   <hr class="sidebar-divider d-none d-md-block">
   
