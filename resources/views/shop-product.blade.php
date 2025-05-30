@@ -18,13 +18,13 @@
 <div class="container">
 <div class="row">
     <div class="col-md-4">
-        <label for="">Sắp Xếp Theo</label>
+        <label for="">Sắp Xếp Theo giá:</label>
         <form action="">
             @csrf
-            <select name="sort" id="sort">
+            <select name="sort" id="sort" class="form-control" onchange="this.form.submit()">
                 <option value="">--Lọc--</option>
-                <option value="">Sắp xếp theo tên A - Z</option>
-                <option value="">Sắp xếp theo tên Z - A</option>
+                <option value="asc" {{ request('sort') == 'asc' ? 'selected' : '' }}>Giá tăng dần</option>
+                <option value="desc" {{ request('sort') == 'desc' ? 'selected' : '' }}>Giá giảm dần</option>
             </select>
         </form>
     </div>

@@ -37,11 +37,11 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'product_name' => 'required|string|max:255|regex:/^[\pL\s\-]+$/u|not_regex:/^\s*$/',
+            'product_name' => 'required|string|max:255',
             'product_quantity' => 'required|integer|min:1|max:10000',
             'product_price' => 'required|numeric|min:1000000|max:90000000',
             'product_detail' => 'required|string|max:1200|not_regex:/^\s*$/',
-            'product_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'product_image' => 'nullable|image',
         ], [
             'product_name.required' => 'Tên sản phẩm là bắt buộc.',
             'product_name.regex' => 'Tên sản phẩm chỉ được chứa chữ cái, khoảng trắng và dấu gạch ngang.',
@@ -60,8 +60,8 @@ class ProductController extends Controller
         ]);
 
         Product::create($request->all());
-        // return redirect('products.index')->with('success','Thêm sản phẩm thành côngg!!!');
-        return redirect()->route('products')->with('success','Thêm sản phẩm thành côngg!!!');
+         return redirect('products.index')->with('success','Thêm sản phẩm thành côngg!!!');
+        //return redirect()->route('products')->with('success','Thêm sản phẩm thành côngg!!!');
     }
 
     /**
@@ -106,11 +106,11 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'product_name' => 'required|string|max:255|regex:/^[\pL\pN\s\-]+$/u|not_regex:/^\s*$/',
+            'product_name' => 'required|string|max:255',
             'product_quantity' => 'required|integer|min:1|max:10000',
             'product_price' => 'required|numeric|min:1000000|max:90000000',
             'product_detail' => 'required|string|max:1200|not_regex:/^\s*$/',
-            'product_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'product_image' => 'nullable|image',
         ], [
             'product_name.required' => 'Tên sản phẩm là bắt buộc.',
             'product_name.regex' => 'Tên sản phẩm chỉ được chứa chữ cái, khoảng trắng.',
