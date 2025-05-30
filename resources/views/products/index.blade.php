@@ -9,14 +9,14 @@
     </div>
     <hr />
 
-    {{-- Hiển thị thông báo thành công --}}
+   
     @if(Session::has('success'))
         <div class="alert alert-success" role="alert">
             {{ Session::get('success') }}
         </div>
     @endif
 
-    {{-- Hiển thị thông báo lỗi --}}
+   
     @if(Session::has('error'))
         <div class="alert alert-danger" role="alert">
             {{ Session::get('error') }}
@@ -44,15 +44,16 @@
                         <td class="align-middle">{{ $rs->product_quantity }}</td>
                         <td class="align-middle" width="150px">{{ $rs->product_price }}</td>
                         <td class="align-middle">{{ $rs->product_detail }}</td>
-                        <td class="align-middle"><img src="{{asset('img/' . $rs->product_image)}}" alt="" width="100px" height="100px"></td>
+                        <td class="align-middle"><img src="{{ asset('img/' . $rs->product_image) }}" alt="" width="100px" height="100px"></td>
                         <td class="align-middle">
                             <div class="btn-group" role="group" aria-label="Basic example">
                                 <a href="{{ route('products.show', $rs->id) }}" type="button" class="btn btn-secondary">Detail</a>
-                                <a href="{{ route('products.edit', $rs->id)}}" type="button" class="btn btn-warning">Edit</a>
-                                <form action="{{ route('products.destroy', $rs->id) }}" method="POST" type="button" class="btn btn-danger p-0" onsubmit="return confirm('Bạn có muốn xóa sản phẩm này?')">
+                                <a href="{{ route('products.edit', $rs->id) }}" type="button" class="btn btn-warning">Edit</a>
+                                <form action="{{ route('products.destroy', $rs->id) }}" method="POST" class="d-inline" 
+                                    onsubmit="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?')">
                                     @csrf
                                     @method('DELETE')
-                                    <button class="btn btn-danger m-0">Delete</button>
+                                    <button type="submit" class="btn btn-danger">Delete</button>
                                 </form>
                             </div>
                         </td>

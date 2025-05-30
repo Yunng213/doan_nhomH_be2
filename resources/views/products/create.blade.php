@@ -1,4 +1,3 @@
-
 @extends('layouts.app_admin')
 
 @section('title', 'Create Product')
@@ -61,18 +60,31 @@
             @enderror
         </div>
     </div>
+     <div class="row mb-3 ">
+     <div class="col-4 align-items-center">
+            <input type="text" name="Promotion" class="form-control" placeholder="Thêm ưu đãi" value="{{ old('Promotion') }}">
+            @error('Promotion')
+                <div class="text-danger">{{ $message }}</div>
+            @enderror
+        </div>
+     </div>
+<!-- 
     <div class="row mb-3">
         <div class="col">
-            <input type="file" id="fileInput" style="opacity: 0;" name="product_image">
-            <label for="file" class="button" onclick="chooseFile()" style="background: #0450d5;
-             color: white;
-             line-height: 1.2;
-             padding: 10px;
-             border-radius: 4px;
-             position: absolute;
-             left:10px;
-             margin-bottom: 10px;
-             cursor: pointer;">
+            <input type="file" 
+                   id="fileInput" 
+                   name="product_image" 
+                   accept="image/jpeg,image/png,image/jpg,image/gif,image/svg+xml"
+                   style="opacity: 0;">
+            <label for="fileInput" class="button" style="background: #0450d5;
+                    color: white;
+                    line-height: 1.2;
+                    padding: 10px;
+                    border-radius: 4px;
+                    position: absolute;
+                    left:10px;
+                    margin-bottom: 10px;
+                    cursor: pointer;">
                 Upload Image
             </label>
             @error('product_image')
@@ -80,9 +92,20 @@
             @enderror
         </div>
         <div class="col">
-            <img id="previewImage" src="#" alt="Hình ảnh xem trước" style="display: none; max-width: 200px;">
+            <img id="previewImage" 
+                 src="#" 
+                 alt="Hình ảnh xem trước" 
+                 style="display: none; max-width: 200px; max-height: 200px; object-fit: contain;">
         </div>
-    </div>
+    </div> -->
+    {{-- Product Image --}}
+    <div class="mb-3">
+            <label for="product_image" class="form-label">Product photo</label>
+            <input id="product_image" type="file" name="product_image" class="form-control" required>
+            @error('product_image')
+                <div class="text-danger small mt-1">{{ $message }}</div>
+            @enderror
+        </div>
 
     <div class="row">
         <div class="d-grid">
@@ -98,6 +121,21 @@ function chooseFile() {
 document.getElementById('fileInput').addEventListener('change', function() {
     var file = this.files[0];
     if (file) {
+        // Kiểm tra định dạng file
+        var allowedTypes = ['image/jpeg', 'image/png', 'image/jpg', 'image/gif', 'image/svg+xml'];
+        if (!allowedTypes.includes(file.type)) {
+            alert('Chỉ chấp nhận file hình ảnh có định dạng: JPEG, PNG, JPG, GIF, SVG');
+            this.value = '';
+            return;
+        }
+
+        // Kiểm tra kích thước file (max 2MB)
+        if (file.size > 2 * 1024 * 1024) {
+            alert('Kích thước file không được vượt quá 2MB');
+            this.value = '';
+            return;
+        }
+
         var reader = new FileReader();
         reader.onload = function(event) {
             var imgElement = document.getElementById('previewImage');

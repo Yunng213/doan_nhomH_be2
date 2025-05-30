@@ -36,8 +36,8 @@ Paginator::useBootstrap();
 Route::get('/{page?}', [HomeController::class, 'index']);
 
 //Chi Tiet San Pham
-//Route::get('/single-product/{product}',[HomeController::class,'product'])->name('single.product');
-Route::get('/single-product/{id}', [ProductController::class, 'show'])->name('single.product');
+Route::get('/single-product/{product}',[HomeController::class,'product'])->name('single.product');
+//Route::get('/single-product/{id}', [ProductController::class, 'show'])->name('single.product');
 
 //San pham theo danh muc
 Route::get('/category-product/{categoryproducts}', [HomeController::class, 'categoryproducts'])->name('category');
@@ -49,6 +49,7 @@ Route::get('/topsellers-product/{topselersproducts}', [HomeController::class, 't
 
 //Tim kiem san pham
 Route::get('/search-product/{searchproduct}', [HomeController::class, 'searchproduct'])->name('timkiem.product');
+//Route::get('/search', [ProductController::class, 'search'])->name('products.arrange');
 
 
 //Gio Hang
@@ -64,7 +65,7 @@ Route::post('/vnpay_payment', [CheckoutControlle::class, 'vnpay_payment']);
 
 
 //Loc san pham
-Route::get('/shop-product', [HomeController::class, 'locsanpham'])->name('products.arrange');
+Route::get('/products/arrange', [HomeController::class, 'locsanpham'])->name('products.arrange');
 Route::get('/search-product/{locsanphamtimkiem}', [HomeController::class, 'locsanphamtimkiem'])->name('search.arrange');
 
 
@@ -95,9 +96,12 @@ Route::middleware('auth')->group(function () {
         Route::get('show/{id}', 'show')->name('products.show');
         Route::get('edit/{id}', 'edit')->name('products.edit');
         Route::put('edit/{id}', 'update')->name('products.update');
-
-        Route::delete('/products/{id}', [ProductController::class, 'destroy'])->name('products.destroy');
+        
+        
     });
+    //Route::delete('delete/{id}', 'destroy')->name('products.destroy');
+    Route::get('/products/index', [ProductController::class, 'allProduct'])->name('products.allProduct');
+    Route::delete('/products/destroy/{id}', [ProductController::class, 'destroy'])->name('products.destroy');
 
 });
 
