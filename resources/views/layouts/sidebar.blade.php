@@ -1,53 +1,57 @@
-
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-  
+
   <div class="container">
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="logo">
-                        <h1><a href="./"><img src="{{asset('img/logo.png')}}"></a></h1>
-                    </div>
-                </div>
-            </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="logo">
+          <h1><a href="./"><img src="{{asset('img/logo.png')}}"></a></h1>
         </div>
+      </div>
+    </div>
+  </div>
   </a>
-  
+
   <!-- Divider -->
   <hr class="sidebar-divider my-0">
-  
+
   <!-- Nav Item - Dashboard -->
   <li class="nav-item">
     <a class="nav-link" href="{{ route('dashboard') }}">
       <i class="fas fa-fw fa-tachometer-alt"></i>
       <span>Dashboard</span></a>
   </li>
-  
+
   <li class="nav-item">
     <a class="nav-link" href="{{ route('products') }}">
       <i class="fas fa-fw fa-tachometer-alt"></i>
       <span>Product</span></a>
   </li>
-  
+
   <li class="nav-item">
     <a class="nav-link" href="profile_admin">
       <i class="fas fa-fw fa-tachometer-alt"></i>
       <span>Profile</span></a>
   </li>
-  
+
   <li class="nav-item">
     <a class="nav-link" href="{{ url('/users') }}">
-        <i class="fas fa-users"></i>
-        <span>Quản lý tài khoản</span>
+      <i class="fas fa-users"></i>
+      <span>Quản lý tài khoản</span>
     </a>
-</li>
+  </li>
 
+  <li class="nav-item">
+    <a class="nav-link" href="{{ route('products.statistics') }}">Thống Kê</a>
+  </li>
+
+  <!-- <li class="nav-item"><a class="nav-link" href="{{ route('products.monthly-revenue') }}">Thống Kê Doanh Thu</a></li> -->
   <!-- Divider -->
   <hr class="sidebar-divider d-none d-md-block">
-  
+
   <!-- Sidebar Toggler (Sidebar) -->
   <div class="text-center d-none d-md-inline">
     <button class="rounded-circle border-0" id="sidebarToggle"></button>
   </div>
-  
-  
+
+
 </ul>

@@ -102,6 +102,8 @@ Route::middleware('auth')->group(function () {
     //Route::delete('delete/{id}', 'destroy')->name('products.destroy');
     Route::get('/products/index', [ProductController::class, 'allProduct'])->name('products.allProduct');
     Route::delete('/products/destroy/{id}', [ProductController::class, 'destroy'])->name('products.destroy');
+    Route::get('/products/statistics', [ProductController::class, 'statistics'])->name('products.statistics');
+    Route::get('/monthly-revenue', [ProductController::class, 'monthlyRevenue'])->name('products.monthly-revenue');
 
 });
 

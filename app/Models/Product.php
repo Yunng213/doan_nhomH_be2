@@ -25,4 +25,15 @@ class Product extends Model
         'created_at',
         'updated_at'
     ];
+
+    // Thêm cast nếu cần
+    protected $casts = [
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime'
+    ];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'product_type', 'id');
+    }
 }

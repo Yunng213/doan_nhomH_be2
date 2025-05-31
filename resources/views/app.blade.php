@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
 
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/owl.carousel.css">
@@ -80,7 +80,7 @@
                             @endforeach
                         </div>
                     </div>
-                </li>
+                </li>               
             </ul>
 
            
