@@ -21,6 +21,7 @@ use App\Models\DonDaDatSession;
 use App\Models\Product;
 use App\Http\Controllers\UserController;
 
+
 Paginator::useBootstrap();
 /*
 |--------------------------------------------------------------------------
@@ -125,4 +126,12 @@ Route::post('/admin_product', function () {
 Route::resource('users', UserController::class);
 //curd user
 Route::get('{page}', [HomeController::class, 'index']);
+
+Route::get('/nhanvien', [HomeController::class, 'nhanvien_index'])->name('nhanvien.index');
+Route::get('/nhanvien/create', [HomeController::class, 'nhanvien_create'])->name('nhanvien.create');
+Route::post('/nhanvien', [HomeController::class, 'nhanvien_store'])->name('nhanvien.store');
+Route::get('/nhanvien/{id}/edit', [HomeController::class, 'nhanvien_edit'])->name('nhanvien.edit');
+Route::put('/nhanvien/{id}', [HomeController::class, 'nhanvien_update'])->name('nhanvien.update');
+Route::delete('/nhanvien/{id}', [HomeController::class, 'nhanvien_destroy'])->name('nhanvien.destroy');
+
 

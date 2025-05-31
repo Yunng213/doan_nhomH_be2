@@ -5,17 +5,15 @@ namespace App\Http\Controllers;
 use App\Helper\Cart;
 use App\Models\Categori;
 use App\Models\Category;
-use App\Models\Latestproduct;
 use App\Models\Product;
-use App\Models\TopSale;
 use App\Models\TopSeller;
+use App\Models\NhanVien;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-
 class HomeController extends Controller
 {
-
+    // Lấy dữ liệu chung cho sản phẩm, danh mục,...
     public static function getProductData()
     {
         $product = Product::paginate(8);
@@ -28,12 +26,11 @@ class HomeController extends Controller
         return compact('product', 'data_category', 'data_product', 'product_cart', 'category', 'topseller', 'data_product_admin');
     }
 
-
+    // Trang chính điều hướng theo $page
     public function index($page = "index")
     {
-
-
         $data = self::getProductData();
+
         switch ($page) {
             case 'login':
                 return view('auth.login');
@@ -44,26 +41,33 @@ class HomeController extends Controller
 
             case 'profile':
                 return $this->showProfile();
+
             case 'products':
                 $product = Product::orderBy('created_at', 'DESC')->get();
                 return view('products.index')->with('product', $product);
+
             case 'profile_admin':
                 return view('layouts.profile_admin');
 
-            case 'profile':
-                return $this->showProfile();
             case 'admin_product':
                 return view('admin_product.index', $data);
-             case 'users':
-            $users = \App\Models\User::all();
-            return view('users.index', compact('users')); // 👈 thêm dòng này
-            default:
 
+            case 'users':
+                $users = \App\Models\User::all();
+                return view('users.index', compact('users'));
+
+            case 'nhanvien':
+                $nhanviens = NhanVien::all();
+                return view('nhanvien.index', compact('nhanviens'));
+
+            default:
                 break;
         }
+
         return view($page, $data);
     }
 
+    // Chi tiết sản phẩm
     public function product(Product $product)
     {
         $product_cart = Product::paginate(5);
@@ -71,6 +75,7 @@ class HomeController extends Controller
         return view('single-product', compact('product', 'data_category', 'product_cart'));
     }
 
+    // Sản phẩm theo danh mục
     public function categoryproducts($categoryproducts)
     {
         $product_cart = Product::paginate(5);
@@ -81,38 +86,29 @@ class HomeController extends Controller
         return view('category-product', compact('product', 'data_category', 'category', 'product_cart', 'category_product'));
     }
 
-    public function productcategory($categoryproducts)
+    // Các chức năng lọc sắp xếp sản phẩm (theo giá)
+    public function locsanpham(Request $request)
     {
-        $category = Categori::all();
-        $category_product = Category::all();
-        $data_category = Category::where('type_id', $categoryproducts)->first();
-        $product = Product::where('type_name', $data_category->type_id)->paginate(8);
-        return view('product-category', compact('category_product', 'product', 'data_category', 'category'));
-    }
-    public function logoproduct($categoryproducts)
-    {
-        $category = Categori::all();
-        $category_product = Category::all();
-        $data_category = Category::where('type_idlogo', $categoryproducts)->first();
-        $product = Product::where('type_logo', $data_category->type_id)->paginate(8);
-        return view('logo-product', compact('product', 'data_category', 'category', 'category_product'));
+        $sortOrder = $request->query('sort', 'asc');
+        $products = Product::orderBy('product_price', $sortOrder)->paginate(8);
+        return view('products.arrange', ['products' => $products]);
     }
 
-    public function topselersproducts(TopSeller $topselersproducts)
+    public function locsanphamtimkiem(Request $request)
     {
-        $product_cart = Product::paginate(5);
-        $data_category = Categori::all();
-        $data_topselersproducts = TopSeller::all();
-        return view('topsellers-product', compact('topselersproducts', 'data_category', 'product_cart'));
+        $sortOrder = $request->query('sort', 'asc');
+        $products = Product::orderBy('product_price', $sortOrder)->paginate(8);
+        return view('search.arrange', ['products' => $products]);
     }
 
+    // Hiển thị profile
     protected function showProfile()
     {
         $user = Auth::user();
         return view('profile.edit', compact('user'));
     }
 
-
+    // Tìm kiếm sản phẩm
     public function searchproduct(Request $req)
     {
         $data_category = Categori::all();
@@ -121,6 +117,8 @@ class HomeController extends Controller
             ->get();
         return view('search-product', compact('product_timkiem', 'data_category'));
     }
+
+    // Thanh toán
     public function checkout(Cart $cart)
     {
         $data_category = Categori::all();
@@ -135,19 +133,58 @@ class HomeController extends Controller
         ], compact('data_category'));
     }
 
-    public function locsanpham(Request $request)
+    /*
+     * ==========================
+     * PHẦN QUẢN LÝ NHÂN VIÊN
+     * ==========================
+     */
+
+    // Trang thêm nhân viên
+    public function nhanvien_create()
     {
-        $sortOrder = $request->query('sort', 'asc');
-        $products = Product::orderBy('product_price', $sortOrder)->paginate(8);
-        return view('products.arrange', ['products' => $products]);
+        return view('nhanvien.create');
     }
 
-    public function locsanphamtimkiem(Request $request)
+    // Lưu nhân viên mới
+    public function nhanvien_store(Request $request)
     {
-        $sortOrder = $request->query('sort', 'asc');
-        $products = Product::orderBy('product_price', $sortOrder)->paginate(8);
+        $request->validate([
+            'TenNV' => 'required|string|max:255',
+            'ChucVu' => 'required|string|max:255',
+            'NgayNhanViec' => 'required|date',
+        ]);
 
-        return view('search.arrange', ['products' => $products]);
+        NhanVien::create($request->all());
+
+        return redirect()->route('nhanvien.index')->with('success', 'Thêm nhân viên thành công!');
     }
 
+    // Trang sửa nhân viên
+    public function nhanvien_edit($id)
+    {
+        $nhanvien = NhanVien::findOrFail($id);
+        return view('nhanvien.edit', compact('nhanvien'));
+    }
+
+    // Cập nhật nhân viên
+    public function nhanvien_update(Request $request, $id)
+    {
+        $request->validate([
+            'TenNV' => 'required|string|max:255',
+            'ChucVu' => 'required|string|max:255',
+            'NgayNhanViec' => 'required|date',
+        ]);
+
+        $nhanvien = NhanVien::findOrFail($id);
+        $nhanvien->update($request->all());
+
+        return redirect()->route('nhanvien.index')->with('success', 'Cập nhật nhân viên thành công!');
+    }
+
+    // Xóa nhân viên
+    public function nhanvien_destroy($id)
+    {
+        NhanVien::destroy($id);
+        return redirect()->route('nhanvien.index')->with('success', 'Xóa nhân viên thành công!');
+    }
 }

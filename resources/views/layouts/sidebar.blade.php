@@ -39,6 +39,12 @@
       <span>Quản lý tài khoản</span>
     </a>
   </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{{ route('nhanvien.index') }}">
+        <i class="fas fa-user-tie"></i>
+        <span>Quản lý nhân viên</span>
+    </a>
+</li>
 
   <li class="nav-item">
     <a class="nav-link" href="{{ route('products.statistics') }}">Thống Kê</a>
