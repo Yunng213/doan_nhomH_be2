@@ -74,6 +74,13 @@ class HomeController extends Controller
         $data_category = Categori::all();
         return view('single-product', compact('product', 'data_category', 'product_cart'));
     }
+    public function topselersproducts(TopSeller $topselersproducts)
+    {
+        $product_cart = Product::paginate(5);
+        $data_category = Categori::all();
+        $data_topselersproducts = TopSeller::all();
+        return view('topsellers-product', compact('topselersproducts', 'data_category', 'product_cart'));
+    }
 
     // Sản phẩm theo danh mục
     public function categoryproducts($categoryproducts)

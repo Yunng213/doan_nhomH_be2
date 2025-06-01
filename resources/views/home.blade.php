@@ -87,7 +87,7 @@
                             <div class="dropdown">
                                 <button class="dropbtn">Danh Mục</button>
                                 <div class="dropdown-content">
-                                    @foreach($data_category as $data)
+                                    @foreach($data_category->take(3) as $data)
                                         <a href="{{route('category', $data->id)}}"
                                             class="menu_categories">{{$data->name}}</a>
                                     @endforeach
@@ -117,18 +117,27 @@
         <!-- Slider -->
         <div class="block-slider block-slider4">
             <ul class="" id="bxslider-home4">
-                <li>
-                    <img src="img/samsunggalaxyslidings24.png" alt="Slide">
-                </li>
-                <li>
-                    <img src="img/iphone_15.png" alt="Slide">
-                </li>
-                <li>
+                <a href="{{ route('single.product', 11) }}">
+                    <li>
+                        <img src="img/samsunggalaxyslidings24.png" alt="Slide">
+                    </li>
+                </a>
+                <a href="{{ route('single.product', 7) }}">
+                    <li>
+                        <img src="img/iphone_15.png" alt="Slide">
+                    </li>
+                </a>
+                <a href="{{ route('single.product', 13) }}">
+                    <li>
                     <img src="img/Macair13.png" alt="Slide">
                 </li>
-                <li>
+                </a>
+                <a href="{{ route('single.product', 8) }}">
+               <li>
                     <img src="img/xiaomi_14.png" alt="Slide">
                 </li>
+                </a>
+                
 
 
             </ul>
@@ -166,7 +175,7 @@
                     <div class="footer-menu">
                         <h2 class="footer-wid-title">Danh mục nổi bật</h2>
                         <ul>
-                            @foreach($data_category as $data)
+                            @foreach($data_category->take(3) as $data)
                                 <a style="margin-left: 100px;" href="{{route('category', $data->id)}}"
                                     class="menu_categories">{{$data->name}}</a>
                             @endforeach

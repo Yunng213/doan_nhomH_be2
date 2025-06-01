@@ -72,3 +72,20 @@
     }
 </style>
 @endsection
+@push('scripts')
+<script>
+    // Lắng nghe sự kiện xóa (như trước)
+    Echo.channel('users')
+        .listen('UserDeleted', (e) => {
+            document.getElementById('user-' + e.userId)?.remove();
+        })
+        // Lắng nghe sự kiện cập nhật
+        .listen('UserUpdated', (e) => {
+            const row = document.getElementById('user-' + e.user.id);
+            if (row) {
+                row.querySelector('td:nth-child(2)').textContent = e.user.name; // Cập nhật tên
+                row.querySelector('td:nth-child(3)').textContent = e.user.email; // Cập nhật email
+            }
+        });
+</script>
+@endpush
